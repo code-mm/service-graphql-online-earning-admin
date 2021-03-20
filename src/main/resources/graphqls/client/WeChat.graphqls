@@ -1,0 +1,68 @@
+"""
+微信登录配置
+"""
+type WeChatLogin{
+
+    """
+    微信APP ID
+    """
+    appId :String!
+    """
+    微信APP密钥
+    """
+    appSecret :String!
+}
+
+
+"""
+微信转账配置
+"""
+type WeChatTransfer{
+    """
+    查询地址
+    """
+    payQueryUrl:String!
+    """
+    支付地址
+    """
+    transferPayUrl:String!
+    """
+    API 密钥
+    """
+    apiAecret:String!
+    """
+    商户账号appid
+    """
+    mchAppId:String!
+    """
+    商户号
+    """
+    mahId:String!
+    """
+    商户名称
+    """
+    mchName:String!
+    """
+    校验用户姓名选项
+    """
+    checkName:CHECK_NAME!
+    """
+    企业付款备注
+    """
+    description:String
+}
+
+"""
+校验用户姓名
+"""
+enum CHECK_NAME{
+
+    """
+    不校验真实姓名
+    """
+    NO_CHECK
+    """
+    强校验真实姓名
+    """
+    FORCE_CHECK
+}

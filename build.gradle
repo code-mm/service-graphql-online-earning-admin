@@ -1,0 +1,172 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.11.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+    id "io.github.kobylynskyi.graphql.codegen" version "4.1.4-SNAPSHOT"
+}
+
+group = 'com.shuangyangad'
+version = 'latest-RELEASE'
+sourceCompatibility = '11'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+
+
+    implementation "com.shuangyangad:graphql-java-gen-support:latest-RELEASE"
+    implementation "com.shuangyangad:dgraph-api-graphql-sdk:latest-RELEASE"
+
+
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.springframework.boot:spring-boot-starter-websocket"
+    implementation "org.springframework.boot:spring-boot-starter-webflux"
+
+
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+    implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:11.0.0'
+    // to embed Altair tool
+    runtimeOnly 'com.graphql-java-kickstart:altair-spring-boot-starter:11.0.0'
+    // to embed GraphiQL tool
+    runtimeOnly 'com.graphql-java-kickstart:graphiql-spring-boot-starter:11.0.0'
+    // to embed Voyager tool
+    runtimeOnly 'com.graphql-java-kickstart:voyager-spring-boot-starter:11.0.0'
+    // testing facilities
+    testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:11.0.0'
+
+    implementation "com.graphql-java:graphql-java-extended-scalars:16.0.0"
+    implementation "javax.validation:validation-api:2.0.1.Final"
+
+
+    implementation 'cn.hutool:hutool-all:5.5.8'
+
+    implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+    implementation group: 'org.json', name: 'json', version: '20201115'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+
+
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+    implementation 'com.sun.xml.bind:jaxb-impl:2.3.0'
+    implementation 'com.sun.xml.bind:jaxb-core:2.3.0'
+    implementation 'javax.activation:activation:1.1.1'
+
+    // redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+}
+
+
+test {
+    useJUnitPlatform()
+}
+
+
+
+
+import io.github.kobylynskyi.graphql.codegen.gradle.GraphQLCodegenGradleTask
+
+compileJava.dependsOn "graphqlCodegenClient"
+sourceSets.main.java.srcDir "$buildDir/generated-client"
+task graphqlCodegenClient(type: GraphQLCodegenGradleTask) {
+
+    graphqlSchemaPaths = [
+            "$projectDir/src/main/resources/graphqls/client/Client.graphqls".toString()
+    ]
+    outputDir = new File("$buildDir/generated-client")
+    apiPackageName = "com.shuangyangad.service.admin.graphql.client.api"
+    modelPackageName = "com.shuangyangad.service.admin.graphql.client.model"
+
+    customTypesMapping = [
+            DateTime     : "java.time.OffsetDateTime",
+            Date         : "java.time.LocalDate",
+            Time         : "java.time.OffsetTime",
+            URI          : "java.net.URI",
+            Object       : "java.lang.Object",
+            Url          : "java.lang.String",
+            PositiveFloat: "java.lang.Float",
+            PhoneNumber  : "java.lang.String",
+            Email        : "java.lang.String",
+            ID           : "com.shopify.graphql.support.ID",
+            Text         : "java.lang.String",
+            JSON         : "java.lang.Object",
+            Html         : "java.lang.String",
+            BigDecimal   : "java.math.BigDecimal"
+    ]
+
+
+    parentInterfaces {
+        queryResolver = "graphql.kickstart.tools.GraphQLQueryResolver"
+        mutationResolver = "graphql.kickstart.tools.GraphQLMutationResolver"
+        subscriptionResolver = "graphql.kickstart.tools.GraphQLSubscriptionResolver"
+        resolver = "graphql.kickstart.tools.GraphQLResolver<{{TYPE}}>"
+    }
+
+    modelNameSuffix = "TO"
+    generateApis = true
+    generateDataFetchingEnvironmentArgumentInApis = true
+}
+
+
+
+
+compileJava.dependsOn "graphqlCodegenUser"
+sourceSets.main.java.srcDir "$buildDir/generated-user"
+task graphqlCodegenUser(type: GraphQLCodegenGradleTask) {
+
+    graphqlSchemaPaths = [
+            "$projectDir/src/main/resources/graphqls/user/User.graphqls".toString()
+    ]
+    outputDir = new File("$buildDir/generated-user")
+    apiPackageName = "com.shuangyangad.service.admin.graphql.user.api"
+    modelPackageName = "com.shuangyangad.service.admin.graphql.user.model"
+
+    customTypesMapping = [
+            DateTime     : "java.time.OffsetDateTime",
+            Date         : "java.time.LocalDate",
+            Time         : "java.time.OffsetTime",
+            URI          : "java.net.URI",
+            Object       : "java.lang.Object",
+            Url          : "java.lang.String",
+            PositiveFloat: "java.lang.Float",
+            PhoneNumber  : "java.lang.String",
+            Email        : "java.lang.String",
+            ID           : "com.shopify.graphql.support.ID",
+            Text         : "java.lang.String",
+            JSON         : "java.lang.Object",
+            Html         : "java.lang.String",
+            BigDecimal   : "java.math.BigDecimal"
+    ]
+
+
+    parentInterfaces {
+        queryResolver = "graphql.kickstart.tools.GraphQLQueryResolver"
+        mutationResolver = "graphql.kickstart.tools.GraphQLMutationResolver"
+        subscriptionResolver = "graphql.kickstart.tools.GraphQLSubscriptionResolver"
+        resolver = "graphql.kickstart.tools.GraphQLResolver<{{TYPE}}>"
+    }
+
+    modelNameSuffix = "TO"
+    generateApis = true
+    generateDataFetchingEnvironmentArgumentInApis = true
+}

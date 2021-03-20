@@ -1,0 +1,74 @@
+//graphqlCodegen {
+//    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphqls/user/User.graphqls".toString()]
+//    outputDir = new File("$buildDir/generated")
+//    apiPackageName = "com.shuangyangad.service.admin.graphql.user.api"
+//    modelPackageName = "com.shuangyangad.service.admin.graphql.user.model"
+//    customTypesMapping = [
+//            DateTime: "java.time.OffsetDateTime"
+//    ]
+//    parentInterfaces {
+//        queryResolver = "graphql.kickstart.tools.GraphQLQueryResolver"
+//        mutationResolver = "graphql.kickstart.tools.GraphQLMutationResolver"
+//        subscriptionResolver = "graphql.kickstart.tools.GraphQLSubscriptionResolver"
+//        resolver = "graphql.kickstart.tools.GraphQLResolver<{{TYPE}}>"
+//    }
+//    modelNameSuffix = "TO"
+//    generateApis = true
+//}
+
+graphqlCodegen {
+    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphqls/client/Client.graphqls".toString()]
+    outputDir = new File("$buildDir/generated")
+    apiPackageName = "com.shuangyangad.service.admin.graphql.client.api"
+    modelPackageName = "com.shuangyangad.service.admin.graphql.client.model"
+    customTypesMapping = [
+            DateTime: "java.time.OffsetDateTime"
+    ]
+    parentInterfaces {
+        queryResolver = "graphql.kickstart.tools.GraphQLQueryResolver"
+        mutationResolver = "graphql.kickstart.tools.GraphQLMutationResolver"
+        subscriptionResolver = "graphql.kickstart.tools.GraphQLSubscriptionResolver"
+        resolver = "graphql.kickstart.tools.GraphQLResolver<{{TYPE}}>"
+    }
+    modelNameSuffix = "TO"
+    generateApis = true
+}
+
+
+//graphqlCodegen {
+//    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphqls/base/Device.graphqls".toString()]
+//    outputDir = new File("$buildDir/generated")
+//    apiPackageName = "com.shuangyangad.service.api.graphql.base.api"
+//    modelPackageName = "com.shuangyangad.service.api.graphql.base.model"
+//    customTypesMapping = [
+//            DateTime: "java.time.OffsetDateTime"
+//    ]
+//    parentInterfaces {
+//        queryResolver = "graphql.kickstart.tools.GraphQLQueryResolver"
+//        mutationResolver = "graphql.kickstart.tools.GraphQLMutationResolver"
+//        subscriptionResolver = "graphql.kickstart.tools.GraphQLSubscriptionResolver"
+//        resolver = "graphql.kickstart.tools.GraphQLResolver<{{TYPE}}>"
+//    }
+//    modelNameSuffix = "TO"
+//    generateApis = true
+//}
+
+
+//
+//graphqlCodegen {
+//    graphqlSchemaPaths = ["$projectDir/src/main/resources/graphqls/base/Client.graphqls".toString()]
+//    outputDir = new File("$buildDir/generated")
+//    apiPackageName = "com.shuangyangad.service.api.graphql.base.api"
+//    modelPackageName = "com.shuangyangad.service.api.graphql.base.model"
+//    customTypesMapping = [
+//            DateTime: "java.time.OffsetDateTime"
+//    ]
+//    parentInterfaces {
+//        queryResolver = "graphql.kickstart.tools.GraphQLQueryResolver"
+//        mutationResolver = "graphql.kickstart.tools.GraphQLMutationResolver"
+//        subscriptionResolver = "graphql.kickstart.tools.GraphQLSubscriptionResolver"
+//        resolver = "graphql.kickstart.tools.GraphQLResolver<{{TYPE}}>"
+//    }
+//    modelNameSuffix = "TO"
+//    generateApis = true
+//}

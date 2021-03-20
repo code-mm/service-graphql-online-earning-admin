@@ -1,0 +1,135 @@
+extend type Query {
+    """
+    查询角色
+    """
+    queryRoles:[Role]
+}
+
+extend type Mutation {
+    """
+    登录
+    """
+    login(input:LoginInput):LoginResult!
+
+
+    """
+    添加系统用户
+    """
+    addSystemUser(input:AddSystemUser!) : AddSystemUserResult!
+
+
+    """
+    添加管理员
+    """
+    addAdminUser(input:AddAdminUser!): AddAdminUserResult!
+}
+
+"""
+添加管理员用户
+"""
+input AddAdminUser{
+
+    """
+    用户名
+    """
+    username:String!
+    """
+    密码
+    """
+    password:String!
+
+}
+"""
+添加管理员用户结果
+"""
+type AddAdminUserResult{
+
+    """
+    是否成功
+    """
+    success:Boolean!
+}
+
+"""
+添加系统用户
+"""
+input AddSystemUser{
+
+    """
+    用户名
+    """
+    username:String!
+    """
+    密码
+    """
+    password:String!
+
+}
+
+"""
+添加系统用户结果
+"""
+type AddSystemUserResult{
+
+    """
+    是否成功
+    """
+    success:Boolean!
+
+}
+
+
+type User{
+    username:String!
+    password:String!
+    role:Role!
+    resouces:Resource!
+}
+
+enum Role{
+    """
+    系统用户
+    """
+    SYSTEM
+
+    """
+    管理员
+    """
+    ADMIN
+
+    """
+    运营
+    """
+    OPERATION
+    """
+    开发
+    """
+    DEVELOPMENT
+}
+
+type Resource{
+    resouces:[String]
+}
+
+
+"""
+登录结果
+"""
+type LoginResult{
+    """
+    Token
+    """
+    token:String!
+}
+
+
+input LoginInput{
+    """
+    用户名
+    """
+    username:String!
+    """
+    密码
+    """
+    password:String!
+}

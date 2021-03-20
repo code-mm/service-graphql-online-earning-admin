@@ -1,0 +1,306 @@
+extend type Query {
+    """
+    查询用户信息
+    """
+    queryClients:[Client]!
+
+
+    """
+    查询客户端配置
+    """
+    queryClientConfig(id:ID!):ClientConfig!
+
+}
+
+extend type Mutation {
+
+    """
+    创建客户端
+    """
+    createClient(input: CreateClientInput!) : CreateClientResult!
+    """
+    更新客户端
+    """
+    updateClient(input: UpdateClientInput!) : Client!
+    """
+    删除客户端
+    """
+    deleteClient(input: DeleteClientInput!) : Boolean!
+
+
+
+
+
+}
+
+"""
+客户端
+"""
+type Client{
+    """
+    名称
+    """
+    name:String!
+    """
+    ID
+    """
+    id:ID!
+    """
+    icon地址
+    """
+    icon:String
+    """
+    包名称
+    """
+    packageName:String
+    """
+    版本
+    """
+    version:Int
+    """
+    逻辑删除
+    """
+    deleted:Boolean
+    """
+    禁用
+    """
+    disable:Boolean
+    """
+    分类1
+    """
+    type1:ClientType1
+    """
+    分类2
+    """
+    type2:String
+
+    """
+    描述
+    """
+    description:String
+
+}
+
+type CreateClientResult{
+    """
+    名称
+    """
+    name:String!
+
+    """
+    ID
+    """
+    id:ID!
+
+    """
+    密钥
+    """
+    secret:String!
+
+    """
+    icon地址
+    """
+    icon:String
+
+    """
+    包名称
+    """
+    packageName:String
+
+    """
+    版本
+    """
+    version:Int
+
+    """
+    逻辑删除
+    """
+    deleted:Boolean
+
+    """
+    禁用
+    """
+    disable:Boolean
+
+    """
+    分类1
+    """
+    type1:ClientType1
+    """
+    分类2
+    """
+    type2:String
+}
+
+
+input CreateClientInput{
+    """
+    客户端名称
+    """
+    name:String!
+    """
+    客户端类型
+    """
+    type1:ClientType1
+    """
+    分类2
+    """
+    type2:String
+
+    """
+    icon地址
+    """
+    icon:String
+    """
+    包名称
+    """
+    packageName:String
+    """
+    版本
+    """
+    version:Int
+
+    """
+    禁用
+    """
+    disable:Boolean
+}
+
+input UpdateClientInput{
+    """
+    名称
+    """
+    name:String!
+    """
+    ID
+    """
+    id:ID!
+    """
+    密钥
+    """
+    secret:String!
+    """
+    icon地址
+    """
+    icon:String
+    """
+    包名称
+    """
+    packageName:String
+    """
+    版本
+    """
+    version:Int
+    """
+    逻辑删除
+    """
+    deleted:Boolean
+    """
+    禁用
+    """
+    disable:Boolean
+    """
+    分类1
+    """
+    type1:ClientType1
+    """
+    分类2
+    """
+    type2:String
+}
+input DeleteClientInput{
+    """
+    客户端ID
+    """
+    id:ID!
+}
+
+
+"""
+客户端类型1
+"""
+enum ClientType1{
+    """
+    应用
+    """
+    APP
+    """
+    游戏
+    """
+    GAME
+}
+
+
+
+
+"""
+客户端配置
+"""
+type ClientConfig{
+
+    """
+    客户端
+    """
+    client:Client!
+
+    """
+    微信登录配置
+    """
+    wechatLogin:WeChatLogin
+
+    """
+    微信提现配置
+    """
+    wechatTransfer:WeChatTransfer
+
+    """
+    提现配置
+    """
+    transferConfig:[TransferConfig]!
+
+    """
+    广告开关配置
+    """
+    adConfig:AdConfig
+}
+
+"""
+转账配置
+"""
+type TransferConfig{
+    """
+    金额(分)
+    """
+    amount:Int!
+
+    """
+    当天最大提现次数
+    """
+    maxtimesOfTheDay:Int!
+}
+
+"""
+广告开关配置
+"""
+type AdConfig{
+
+    """
+    渠道名称
+    """
+    channelName:String!
+
+    """
+    渠道ID
+    """
+    channelId:String!
+
+    """
+    渠道号
+    """
+    channelCode:String!
+
+    """
+    是否开启
+    """
+    enable:Boolean!
+}

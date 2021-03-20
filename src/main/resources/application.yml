@@ -1,0 +1,44 @@
+server:
+  port: 29999
+spring:
+  application:
+    name: graphql-admin
+  servlet:
+    multipart:
+      enabled: true
+      location: /tmp
+
+  #redis
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 0
+    timeout: 50000
+
+
+  #mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 2021
+    url: jdbc:mysql://localhost:3306/sy_db?serverTimezone=GMT%2B8&characterEncoding=utf8&useSSL=true
+
+  data:
+    # mongodb
+    mongodb:
+      uri: mongodb://localhost:27017/sy_db?serverSelectionTimeoutMS=5000&connectTimeoutMS=10000&3t.uriVersion=3&3t.connection.name=integral
+      username:
+      password:
+      port:
+
+
+
+# mybatis-plus
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

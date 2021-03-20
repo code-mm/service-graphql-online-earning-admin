@@ -1,0 +1,33 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+}
+
+type Mutation {
+
+}
+
+type Subscription{
+    hello(hello:String):Int
+}
+
+
+scalar DateTime
+scalar Time
+scalar Date
+scalar Url
+scalar PhoneNumber
+scalar Email
+scalar PositiveFloat
+scalar BigDecimal
+scalar JSON
+scalar Object
+scalar URI
+scalar Text
+scalar Html
+scalar Long
+
+
